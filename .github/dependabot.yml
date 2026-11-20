@@ -11,7 +11,12 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: weekly
+      interval: monthly
+    # One pull request for all the actions, so CI runs once and the pins move
+    # together. Majors are included on purpose: they are the point of the bump.
+    groups:
+      actions:
+        patterns: ["*"]
     commit-message:
       prefix: ci
 
@@ -20,6 +25,11 @@ updates:
     # pulls it in, so both are found from the repository root.
     directory: "/"
     schedule:
-      interval: weekly
+      interval: monthly
+    # Minor and patch releases arrive together; a major version stays its own
+    # pull request, because that is the one that can break the build.
+    groups:
+      python-minor:
+        update-types: ["minor", "patch"]
     commit-message:
       prefix: deps

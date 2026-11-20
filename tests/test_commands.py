@@ -39,7 +39,10 @@ def bridge(doc, settings, tmp_path, monkeypatch):
     b.send_succeeds = True
     monkeypatch.setattr(b, "_send_access", record)
     # _handle schedules a follow-up poll; there is no link to poll over here.
-    monkeypatch.setattr(b, "_spawn", lambda coro: coro.close())
+    # A plain assignment, not monkeypatch: unpatch_spawn() removes it from the
+    # instance by hand, and pytest 9's monkeypatch teardown then fails trying
+    # to undo an attribute that is already gone. The bridge is per-test anyway.
+    b._spawn = lambda coro: coro.close()
     return b
 
 
