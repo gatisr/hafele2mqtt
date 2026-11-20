@@ -1,0 +1,70 @@
+name: docker
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE: ${{ github.repository }}
+
+# Every action below is pinned to a commit SHA rather than to a tag. This
+# workflow can publish an image, so an action it trusts can publish one too, and
+# a tag is a mutable pointer in somebody else's repository. The readable version
+# stays in the trailing comment, and .github/dependabot.yml moves the pin and
+# the comment together.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Declared on the job, not on the workflow, so this is the whole of what any
+    # step here can do: read the code and publish the image. `packages: write`
+    # is what pushing to GHCR needs and cannot be dropped, but no step on a pull
+    # request uses it - the login is skipped and `push` is false - and a pull
+    # request from a fork is handed a read-only token in any case.
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
+
+      # linux/arm/v7 is deliberately absent: no armv7 wheels exist for cffi or
+      # cryptography, so it would build both from source and fail. See README.
+      - uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130  # v3.7.0
+        with:
+          platforms: arm64
+
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f  # v3.12.0
+
+      # Pull requests from forks get no registry credentials, so build only.
+      - name: Log in to ghcr.io
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9  # v3.7.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: meta
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051  # v5.10.0
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=pr
+
+      - uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8  # v6.19.2
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

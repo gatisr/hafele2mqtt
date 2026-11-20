@@ -1,0 +1,17 @@
+# Everything not excluded here is uploaded to the Docker daemon as build
+# context, so anything secret that lives in the working tree has to be named.
+# Note the `**/`: a bare `*.connect` only matches the top level, which is not
+# where a mesh export is normally kept.
+.env
+.env.*
+**/*.connect
+config/
+data/
+.venv/
+__pycache__/
+*.pyc
+.git/
+.gitignore
+.DS_Store
+README.md
+compose.yaml

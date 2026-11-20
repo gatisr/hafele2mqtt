@@ -1,0 +1,25 @@
+# Every action in .github/workflows is pinned to a commit SHA and every Python
+# dependency is pinned to an exact version. Pinning is what stops an upgrade
+# happening without anyone deciding to, which also means nothing upgrades on its
+# own: this file is the other half of that bargain. Without it the pins would
+# simply rot.
+#
+# Dependabot understands a SHA pin with a `# vX.Y.Z` comment after it and moves
+# both together, so the pull request stays readable.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+
+  - package-ecosystem: pip
+    # requirements.txt is what goes into the image and requirements-dev.txt
+    # pulls it in, so both are found from the repository root.
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: deps

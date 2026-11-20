@@ -1,0 +1,18 @@
+.env
+# The deploy settings, kept apart from .env because .env becomes the
+# container's runtime environment. .env.deploy.example IS tracked.
+.env.deploy
+# Nobody's real network export belongs in git: a net key plus an app key is full
+# control of their lights. The anonymised test fixture is the one exception.
+*.connect
+!tests/fixtures/*.connect
+# A real entities file is a list of what the rooms in someone's home are called,
+# so it stays out too. entities.yaml.example, with its made-up network, IS tracked.
+entities.yaml
+config/
+data/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.DS_Store

@@ -1,0 +1,125 @@
+# An example of what `--dump-overrides` writes, from a made-up network of two
+# boxes and a remote. Nothing here needs copying: the command produces the same
+# thing for your own network, filled in with your own names.
+#
+# hafele2mqtt entities file, written by `python -m app.main --dump-overrides`.
+#
+# Everything this bridge publishes, with every setting already filled in with
+# the value it has today. Reading it back changes nothing - it sets each entity
+# to what it already is. That is the point: keep it in version control, run the
+# command again after the next .connect export, and the diff is the list of what
+# moved in the mesh.
+#
+# Keeping it is entirely optional. The bridge runs the same with no entities
+# file at all, and identity across re-addressing is remembered in state.json
+# either way, not here.
+#
+# The key of each entry is the id from the export: the same anchor the bridge
+# remembers identity by, and the one handle that does not move when a device is
+# re-provisioned onto a new address.
+#
+# Comment lines inside an entry are NOT settings, and there is nowhere to put
+# them if they were. Mesh addresses, scene numbers, group multicast addresses,
+# group membership and node UUIDs all come from the export and are ignored as
+# input. They are printed because they are exactly what a re-export changes.
+#
+# Two things are written fuller than you would type them by hand:
+#  * scene names include SCENE_NAME_PREFIX, because a name written here replaces
+#    the whole name rather than being prefixed again,
+#  * `area:` appears on lights only. Home Assistant takes the area from the
+#    device, and groups and scenes share one, so the bridge refuses it there.
+#
+# network: Loft
+# all-lights group: 0xC002
+
+lights:
+
+  # Desk strip - light at mesh address 0x0010, on node 0x0010 (Study box)
+  '00000000-0000-4000-8000-000000000101':
+    name: 'Desk strip'
+    entity_id: 'light.desk_strip'
+    area: 'Study'
+    unique_id: 'hafele_0010'
+    enabled: true
+
+  # Shelf strip - light at mesh address 0x0011, on node 0x0010 (Study box)
+  '00000000-0000-4000-8000-000000000102':
+    name: 'Shelf strip'
+    entity_id: 'light.shelf_strip'
+    area: 'Study'
+    unique_id: 'hafele_0011'
+    enabled: true
+
+  # Cabinet strip - light at mesh address 0x0012, on node 0x0010 (Study box)
+  '00000000-0000-4000-8000-000000000103':
+    name: 'Cabinet strip'
+    entity_id: 'light.cabinet_strip'
+    area: 'Study'
+    unique_id: 'hafele_0012'
+    enabled: true
+
+  # Hall spot - light at mesh address 0x0020, on node 0x0020 (Hall box)
+  '00000000-0000-4000-8000-000000000104':
+    name: 'Hall spot'
+    entity_id: 'light.hall_spot'
+    unique_id: 'hafele_0020'
+    enabled: true
+
+  # All lights - all group, multicast address 0xC002
+  # 4 member(s): Cabinet strip, Desk strip, Hall spot, Shelf strip
+  '00000000-0000-4000-8000-00000000a11a':
+    name: 'All lights'
+    entity_id: 'light.all_lights'
+    unique_id: 'hafele_group_c002'
+    enabled: true
+
+  # Study - room group, multicast address 0xC006
+  # 3 member(s): Cabinet strip, Desk strip, Shelf strip
+  '00000000-0000-4000-8000-00000000f00d':
+    name: 'Study'
+    entity_id: 'light.study'
+    unique_id: 'hafele_group_c006'
+    enabled: true
+
+  # Bookcase - group group, multicast address 0xC00B
+  # 2 member(s): Desk strip, Shelf strip
+  '00000000-0000-4000-8000-00000000beef':
+    name: 'Bookcase'
+    entity_id: 'light.bookcase'
+    unique_id: 'hafele_group_c00b'
+    enabled: true
+
+scenes:
+
+  # Scene Bright - scene number 1, kind scene
+  '00000000-0000-4000-8000-000000005ce1':
+    name: 'Scene Bright'
+    entity_id: 'scene.scene_bright'
+    icon: 'mdi:white-balance-sunny'
+    unique_id: 'hafele_scene_1'
+    enabled: true
+
+  # Scene Off - scene number 2, kind scene
+  '00000000-0000-4000-8000-000000005ce2':
+    name: 'Scene Off'
+    entity_id: 'scene.scene_off'
+    icon: 'mdi:power-standby'
+    unique_id: 'hafele_scene_2'
+    enabled: true
+
+  # Scene Evening - scene number 3, kind preset
+  '00000000-0000-4000-8000-000000005ce3':
+    name: 'Scene Evening'
+    entity_id: 'scene.scene_evening'
+    unique_id: 'hafele_scene_3'
+    enabled: true
+
+# Physical boxes. Devices rather than entities: there is no `nodes:` section,
+# and adding one is an error. Listed because a box's UUID is what the bridge
+# re-attaches its lights by after it is re-provisioned onto a new address.
+#   0x0010  Study box
+#           uuid=00000000-0000-4000-8000-000000100000  device_id=hafele_node_0010  model=com.haefele.24v.blebox.v2  fw=6.0.5  hw=1.0.0  mac=00AA01  suggested_area=Study
+#   0x0020  Hall box
+#           uuid=00000000-0000-4000-8000-000000200000  device_id=hafele_node_0020  model=com.haefele.24v.blebox.v2  fw=6.0.5  hw=1.0.0  mac=00AA02
+#   0x0030  Hall remote
+#           uuid=00000000-0000-4000-8000-000000300000  device_id=hafele_node_0030  model=com.haefele.remote  fw=6.0.5  hw=1.0.0  mac=00AA03

@@ -1,0 +1,615 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://www.bluetooth.com/specifications/assigned-numbers/mesh-profile/cdb-schema.json#",
+  "version": "1.0.1",
+  "meshName": "Test Network",
+  "meshUUID": "00000000-0000-4000-8000-00000000e511",
+  "timestamp": "2026-01-01T00:00:00Z",
+  "partial": false,
+  "tos_network": {
+    "version": 3,
+    "appVersion": "2.4.4",
+    "platform": "test",
+    "provisionerMeshAddress": "7FF6",
+    "nextUnicastAddress": 49,
+    "defaultNetworkTransmissionCount": 2,
+    "defaultRelayCount": 2
+  },
+  "tos_schedules": [],
+  "tos_scenes": [
+    {
+      "id": "00000000-0000-4000-8000-000000005ce1",
+      "kind": "scene",
+      "sceneNumber": 1,
+      "name": "All on",
+      "icon": "ui/sun",
+      "color": "#ffffff",
+      "groupId": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000005ce2",
+      "kind": "scene",
+      "sceneNumber": 2,
+      "name": "All off",
+      "icon": "scenes/standby",
+      "color": "#000000",
+      "groupId": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000005ce3",
+      "kind": "preset",
+      "sceneNumber": 3,
+      "name": "Dimmed",
+      "icon": "ui/somethingNew",
+      "color": "#888888",
+      "groupId": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000005ce4",
+      "kind": "preset",
+      "sceneNumber": 3,
+      "name": "Dimmed copy",
+      "icon": "ui/somethingNew",
+      "color": "#888888",
+      "groupId": null
+    }
+  ],
+  "tos_groups": [
+    {
+      "id": "00000000-0000-4000-8000-00000000a11a",
+      "type": "all",
+      "name": "TOS_Internal_All",
+      "icon": "ui/grid",
+      "multicastAddress": 49154,
+      "multicastAddress2": 49155,
+      "multicastAddress3": 49156,
+      "multicastAddress4": 49157
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000f00d",
+      "type": "room",
+      "name": "Room",
+      "icon": "rooms/kitchen",
+      "multicastAddress": 49158,
+      "multicastAddress2": 49159,
+      "multicastAddress3": 49160,
+      "multicastAddress4": 49161
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000beef",
+      "type": "group",
+      "name": "Shelf",
+      "icon": "ui/grid",
+      "multicastAddress": 49163,
+      "multicastAddress2": 49164,
+      "multicastAddress3": 49165,
+      "multicastAddress4": 49166
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000dead",
+      "type": "group",
+      "name": "Empty",
+      "icon": "ui/grid",
+      "multicastAddress": 49168,
+      "multicastAddress2": 49169,
+      "multicastAddress3": 49170,
+      "multicastAddress4": 49171
+    }
+  ],
+  "tos_presets": {
+    "color_presets": [],
+    "temperature_presets": []
+  },
+  "tos_uiSettings": {
+    "scenes": {
+      "favorites": []
+    },
+    "groups": {
+      "favorites": []
+    },
+    "devices": {
+      "favorites": []
+    },
+    "rooms": {
+      "favorites": []
+    }
+  },
+  "nodes": [
+    {
+      "UUID": "00000000-0000-4000-8000-000000100000",
+      "unicastAddress": "0010",
+      "security": "secure",
+      "deviceKey": "ffffffffffffffffffffffffffffffff",
+      "cid": "07E9",
+      "vid": "0001",
+      "pid": "0001",
+      "elements": [
+        {
+          "index": 0,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 1,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 2,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 3,
+          "location": "0000",
+          "name": "",
+          "models": []
+        }
+      ],
+      "configComplete": true,
+      "netKeys": [
+        {
+          "index": 0,
+          "updated": false
+        }
+      ],
+      "appKeys": [
+        {
+          "index": 0,
+          "updated": false
+        }
+      ],
+      "excluded": false,
+      "tos_node": {
+        "elementCount": 4,
+        "type": "com.haefele.24v.blebox.v2",
+        "macBytes": "00AA01",
+        "firmwareVersion": "6.0.5",
+        "bootloaderVersion": "1.0.0",
+        "hardwareVersion": "1.0.0",
+        "networkTransmitCount": 2,
+        "networkTransmitInterval": 20,
+        "relayState": "enabled",
+        "relayCount": 2,
+        "relayInterval": 20
+      },
+      "tos_devices": [
+        {
+          "id": "00000000-0000-4000-8000-000000000b01",
+          "type": "com.haefele.24v.blebox.v2",
+          "icon": "devices/blebox6",
+          "name": "Box 1",
+          "meshAddress": 16,
+          "value": [
+            0
+          ],
+          "lastValue": [
+            0
+          ]
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000101",
+          "type": "com.haefele.led.white",
+          "icon": "devices/bulb",
+          "name": "Light 1",
+          "meshAddress": 16,
+          "value": [
+            0
+          ],
+          "lastValue": [
+            65535
+          ],
+          "ports": [
+            0
+          ],
+          "scheduleSettings": [],
+          "sceneSettings": [
+            {
+              "id": "00000000-0000-4000-8000-000000005ce1",
+              "sceneValue": [
+                65535
+              ],
+              "status": "completed"
+            }
+          ],
+          "groupSettings": [
+            {
+              "id": "00000000-0000-4000-8000-00000000a11a",
+              "status": "completed"
+            },
+            {
+              "id": "00000000-0000-4000-8000-00000000f00d",
+              "status": "completed"
+            },
+            {
+              "id": "00000000-0000-4000-8000-00000000beef",
+              "status": "completed"
+            }
+          ],
+          "roomId": "00000000-0000-4000-8000-00000000f00d"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000102",
+          "type": "com.haefele.led.white",
+          "icon": "devices/bulb",
+          "name": "Light 2",
+          "meshAddress": 17,
+          "value": [
+            0
+          ],
+          "lastValue": [
+            65535
+          ],
+          "ports": [
+            0
+          ],
+          "scheduleSettings": [],
+          "sceneSettings": [
+            {
+              "id": "00000000-0000-4000-8000-000000005ce1",
+              "sceneValue": [
+                65535
+              ],
+              "status": "completed"
+            }
+          ],
+          "groupSettings": [
+            {
+              "id": "00000000-0000-4000-8000-00000000a11a",
+              "status": "completed"
+            },
+            {
+              "id": "00000000-0000-4000-8000-00000000f00d",
+              "status": "completed"
+            },
+            {
+              "id": "00000000-0000-4000-8000-00000000beef",
+              "status": "completed"
+            }
+          ],
+          "roomId": "00000000-0000-4000-8000-00000000f00d"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000103",
+          "type": "com.haefele.led.white",
+          "icon": "devices/bulb",
+          "name": "Light 3",
+          "meshAddress": 18,
+          "value": [
+            0
+          ],
+          "lastValue": [
+            65535
+          ],
+          "ports": [
+            0
+          ],
+          "scheduleSettings": [],
+          "sceneSettings": [
+            {
+              "id": "00000000-0000-4000-8000-000000005ce1",
+              "sceneValue": [
+                65535
+              ],
+              "status": "completed"
+            }
+          ],
+          "groupSettings": [
+            {
+              "id": "00000000-0000-4000-8000-00000000a11a",
+              "status": "completed"
+            },
+            {
+              "id": "00000000-0000-4000-8000-00000000f00d",
+              "status": "completed"
+            }
+          ],
+          "roomId": "00000000-0000-4000-8000-00000000f00d"
+        }
+      ]
+    },
+    {
+      "UUID": "00000000-0000-4000-8000-000000200000",
+      "unicastAddress": "0020",
+      "security": "secure",
+      "deviceKey": "ffffffffffffffffffffffffffffffff",
+      "cid": "07E9",
+      "vid": "0001",
+      "pid": "0001",
+      "elements": [
+        {
+          "index": 0,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 1,
+          "location": "0000",
+          "name": "",
+          "models": []
+        }
+      ],
+      "configComplete": true,
+      "netKeys": [
+        {
+          "index": 0,
+          "updated": false
+        }
+      ],
+      "appKeys": [
+        {
+          "index": 0,
+          "updated": false
+        }
+      ],
+      "excluded": false,
+      "tos_node": {
+        "elementCount": 2,
+        "type": "com.haefele.24v.blebox.v2",
+        "macBytes": "00AA02",
+        "firmwareVersion": "6.0.5",
+        "bootloaderVersion": "1.0.0",
+        "hardwareVersion": "1.0.0",
+        "networkTransmitCount": 2,
+        "networkTransmitInterval": 20,
+        "relayState": "enabled",
+        "relayCount": 2,
+        "relayInterval": 20
+      },
+      "tos_devices": [
+        {
+          "id": "00000000-0000-4000-8000-000000000b02",
+          "type": "com.haefele.24v.blebox.v2",
+          "icon": "devices/blebox6",
+          "name": "Box 2",
+          "meshAddress": 32,
+          "value": [
+            0
+          ],
+          "lastValue": [
+            0
+          ]
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000104",
+          "type": "com.haefele.led.white",
+          "icon": "devices/bulb",
+          "name": "Light 4",
+          "meshAddress": 32,
+          "value": [
+            0
+          ],
+          "lastValue": [
+            65535
+          ],
+          "ports": [
+            0
+          ],
+          "scheduleSettings": [],
+          "sceneSettings": [
+            {
+              "id": "00000000-0000-4000-8000-000000005ce1",
+              "sceneValue": [
+                65535
+              ],
+              "status": "completed"
+            }
+          ],
+          "groupSettings": [
+            {
+              "id": "00000000-0000-4000-8000-00000000a11a",
+              "status": "completed"
+            }
+          ],
+          "roomId": null
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000105",
+          "type": "com.haefele.led.rgb",
+          "icon": "devices/bulb",
+          "name": "Colour Light",
+          "meshAddress": 33,
+          "value": [
+            0
+          ],
+          "lastValue": [
+            0
+          ],
+          "groupSettings": []
+        }
+      ]
+    },
+    {
+      "UUID": "00000000-0000-4000-8000-000000300000",
+      "unicastAddress": "0030",
+      "security": "secure",
+      "deviceKey": "ffffffffffffffffffffffffffffffff",
+      "cid": "07E9",
+      "vid": "0001",
+      "pid": "0001",
+      "elements": [
+        {
+          "index": 0,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 1,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 2,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 3,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 4,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 5,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 6,
+          "location": "0000",
+          "name": "",
+          "models": []
+        },
+        {
+          "index": 7,
+          "location": "0000",
+          "name": "",
+          "models": []
+        }
+      ],
+      "configComplete": true,
+      "netKeys": [
+        {
+          "index": 0,
+          "updated": false
+        }
+      ],
+      "appKeys": [
+        {
+          "index": 0,
+          "updated": false
+        }
+      ],
+      "excluded": false,
+      "tos_node": {
+        "elementCount": 8,
+        "type": "com.haefele.remote",
+        "macBytes": "00AA03",
+        "firmwareVersion": "6.0.5",
+        "bootloaderVersion": "1.0.0",
+        "hardwareVersion": "1.0.0",
+        "networkTransmitCount": 2,
+        "networkTransmitInterval": 20,
+        "relayState": "enabled",
+        "relayCount": 2,
+        "relayInterval": 20
+      },
+      "tos_devices": [
+        {
+          "id": "00000000-0000-4000-8000-000000000901",
+          "type": "com.haefele.remote.v2",
+          "icon": "devices/bleRemote2",
+          "name": "Remote 1",
+          "meshAddress": 48,
+          "modules": []
+        }
+      ]
+    }
+  ],
+  "netKeys": [
+    {
+      "name": "NetKey",
+      "index": 0,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "minSecurity": "secure",
+      "phase": 0,
+      "timestamp": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "appKeys": [
+    {
+      "name": "App Key",
+      "index": 0,
+      "boundNetKey": 0,
+      "key": "0f0e0d0c0b0a09080706050403020100"
+    }
+  ],
+  "provisioners": [
+    {
+      "UUID": "00000000-0000-4000-8000-00000000d00d",
+      "provisionerName": "Provisioner",
+      "allocatedUnicastRange": [
+        {
+          "lowAddress": "0001",
+          "highAddress": "1000"
+        }
+      ],
+      "allocatedGroupRange": [
+        {
+          "lowAddress": "C000",
+          "highAddress": "CFFF"
+        }
+      ],
+      "allocatedSceneRange": [
+        {
+          "firstScene": "0001",
+          "lastScene": "0fff"
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "TOS_Internal_All (Control)",
+      "address": "C002",
+      "parentAddress": "0000"
+    },
+    {
+      "name": "Room (Control)",
+      "address": "C006",
+      "parentAddress": "0000"
+    },
+    {
+      "name": "Shelf (Control)",
+      "address": "C00B",
+      "parentAddress": "0000"
+    }
+  ],
+  "scenes": [
+    {
+      "name": "All on",
+      "number": "0001",
+      "addresses": [
+        "0010",
+        "0011",
+        "0012",
+        "0020"
+      ]
+    },
+    {
+      "name": "All off",
+      "number": "0002",
+      "addresses": [
+        "0010",
+        "0011",
+        "0012",
+        "0020"
+      ]
+    },
+    {
+      "name": "Dimmed",
+      "number": "0003",
+      "addresses": [
+        "0010",
+        "0011",
+        "0012",
+        "0020"
+      ]
+    }
+  ],
+  "networkExclusions": []
+}

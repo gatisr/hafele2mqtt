@@ -1,0 +1,30 @@
+name: hafele2mqtt
+services:
+  hafele2mqtt:
+    build: .
+    # Named so that the tag scripts/deploy.sh builds is the tag this file
+    # starts. With neither variable set it is plain hafele2mqtt:latest, and
+    # `docker compose up -d --build` behaves exactly as it did without this
+    # line.
+    image: ${IMAGE:-hafele2mqtt}:${TAG:-latest}
+    container_name: hafele2mqtt
+    restart: unless-stopped
+    # Required: bleak reaches BlueZ over the host's D-Bus, and the BLE adapter
+    # is not namespaced. The bridge opens no listening port of its own.
+    network_mode: host
+    env_file: .env
+    volumes:
+      - /var/run/dbus:/var/run/dbus
+      # Drop the export from the Connect app in here under whatever name it
+      # came with. The bridge picks up the only *.connect file it finds; set
+      # MESH_FILE if you deliberately keep several.
+      - ./config:/config:ro
+      # Must be writable. It holds the mesh sequence number, and losing that
+      # makes every node ignore the bridge until the counter catches up again.
+      - ./data:/data
+    # The healthcheck heartbeat (HEALTH_FILE, default /tmp/health) lives here.
+    # A tmpfs keeps a once-a-poll timestamp in memory, which on a Raspberry Pi
+    # is the difference between touching an SD card all day and not. Nothing in
+    # /tmp needs to survive a restart.
+    tmpfs:
+      - /tmp
